@@ -1,0 +1,11 @@
+#!/bin/bash
+
+sudo xbps-remove -O
+rm -rf ~/.cache/*
+
+rm -rf ~/.cache/thumbnails/*
+rm -rf ~/.local/share/recently-used.xbel
+
+rm -rf ~/.local/share/klipper
+
+echo "Cleanup complete."
