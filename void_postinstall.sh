@@ -10,6 +10,7 @@ swapon /swapfile
 echo "/swapfile none swap sw 0 0" >> /etc/fstab
 cat /etc/fstab
 ls -l
+echo '
 ***
 Done. 
 ***'
