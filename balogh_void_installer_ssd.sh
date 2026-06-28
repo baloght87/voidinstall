@@ -7,6 +7,7 @@ echo '
 ***
 Done. 
 ***'
+sleep 5
 clear
 
 echo "Checking efivars..."
