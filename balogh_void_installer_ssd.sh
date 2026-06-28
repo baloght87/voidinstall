@@ -1,5 +1,6 @@
 #!/bin/bash
 
+clear
 echo "Setting up Hungarian keymap..."
 sleep 5
 loadkeys hu
