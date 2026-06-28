@@ -171,8 +171,28 @@ Done.
 sleep 5
 clear
 
+echo "Grub configuration..."
+sleep 5
+echo "GRUB_ENABLE_CRYPTODISK=y" >> /etc/default/grub
+echo "rd.lvm.vg=voidvm rd.luks.allow-discards rd.luks.uuid=<UUID>" >> /etc/default/grub
+echo "blkid -o value -s UUID /dev/sda2" >> /etc/default/grub
+echo '
+***
+Done. 
+***'
+sleep 5
+clear
 
+echo "Installing grub..."
+sleep 5
+grub-install /dev/sda
+echo '
+***
+Done. 
+***'
+sleep 5
+clear
 
 END
 clear
-echo "Go back to chroot! Change root password!"
+echo "Go back to chroot! Change root password! Edit /etc/default/grub! 'xbps-reconfigure -fa'"
