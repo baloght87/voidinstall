@@ -68,6 +68,29 @@ Done.
 sleep 5
 clear
 
+echo "Changing rc.conf and sshd_config files..."
+sleep 5
+echo "PermitRootLogin no" >> /etc/ssh/sshd_config
+echo "CGROUP_MODE=unified" >> /etc/rc.conf
+echo '
+***
+Done. 
+***'
+sleep 5
+clear
+
+echo "Setting up fstrim..."
+sleep 5
+xbps-install -Sy cronie
+ln -s /etc/sv/cronie /var/service
+> /etc/cron.weekly/fstrim
+echo '
+***
+Done. 
+***'
+sleep 5
+clear
+
 echo "Installing chrony..."
 sleep 5
 xbps-install -Sy chrony
