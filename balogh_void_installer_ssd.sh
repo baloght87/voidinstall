@@ -152,6 +152,7 @@ clear
 echo "Setting up the hostname..."
 sleep 5
 echo voidvm > /etc/hostname
+cat /etc/hostname
 echo '
 ***
 Done. 
@@ -166,6 +167,24 @@ echo "en_US.UTF-8 UTF-8" >> /etc/default/libc-locales
 echo "KEYMAP=hu" > /etc/vconsole.conf
 xbps-reconfigure -f glibc-locales
 ln -sf /usr/share/zoneinfo/Europe/Budapest /etc/localtime
+echo '
+***
+Done. 
+***'
+sleep 5
+clear
+
+echo "Luks key setup..."
+sleep 5
+dd bs=1 count=64 if=/dev/urandom of=/boot/volume.key
+cryptsetup luksAddKey /dev/sda2 /boot/volume.key
+chmod 000 /boot/volume.key
+chmod -R g-rwx,o-rwx /boot
+echo "voidvm  /dev/sda2  /boot/volume.key  luks" >> /etc/crypttab
+echo 'install_items+=" /boot/volume.key /etc/crypttab "' > /etc/dracut.conf.d/10-crypt.conf
+cat /etc/crypttab
+sleep 3
+cat /etc/dracut.conf.d/10-crypt.conf
 echo '
 ***
 Done. 
