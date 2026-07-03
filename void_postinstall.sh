@@ -83,7 +83,22 @@ echo "Setting up fstrim..."
 sleep 5
 xbps-install -Sy cronie
 ln -s /etc/sv/cronie /var/service
-> /etc/cron.weekly/fstrim
+cat << EOF | sudo tee /etc/cron.weekly/fstrim
+#!/bin/bash
+
+fstrim /
+EOF
+chmod u+x /etc/cron.weekly/fstrim
+echo '
+***
+Done. 
+***'
+sleep 5
+clear
+
+echo "Setting up apparmor..."
+sleep 5
+xbps-install -Sy apparmor
 echo '
 ***
 Done. 
@@ -108,6 +123,20 @@ sleep 5
 xbps-install -Sfy acpid
 ln -s /etc/sv/acpid /var/service
 ls /var/service
+echo '
+***
+Done. 
+***'
+sleep 5
+clear
+
+echo "Setting up nftables..."
+sleep 5
+xbps-install -Sy nftables runit-nftables
+ln -s /etc/sv/nftables /var/service
+cat << EOF | sudo tee /etc/nftables.conf
+
+EOF
 echo '
 ***
 Done. 
