@@ -1,6 +1,22 @@
 #!/bin/bash
 
+echo "LUKS key setup..."
+dd bs=1 count=64 if=/dev/urandom of=/boot/volume.key
+cryptsetup luksAddKey /dev/sda2 /boot/volume.key
+chmod 000 /boot/volume.key
+chmod -R g-rwx,o-rwx /boot
+echo "voidvm  /dev/sda2  /boot/volume.key  luks" >> /etc/crypttab
+echo 'install_items+=" /boot/volume.key /etc/crypttab "' > /etc/dracut.conf.d/10-crypt.conf
+cat /etc/crypttab
+sleep 3
+cat /etc/dracut.conf.d/10-crypt.conf
+echo '
+***
+Done. 
+***'
+sleep 5
 clear
+
 echo "Setting up a swap file..."
 sleep 5
 dd if=/dev/zero of=/swapfile bs=1M count=8192
@@ -174,6 +190,46 @@ Done.
 ***'
 sleep 5
 clear
+
+echo "Setting up sysctl parameters..."
+sleep 5
+cat << EOF | sudo tee /etc/sysctl.conf
+# See sysctl.conf(5)
+# Do not act as a router
+net.ipv4.ip_forward = 0
+net.ipv6.conf.all.forwarding = 0
+# SYN flood protection
+net.ipv4.tcp_syncookies = 1
+# Disable ICMP redirect
+net.ipv4.conf.all.accept_redirects = 0
+net.ipv4.conf.default.accept_redirects = 0
+net.ipv4.conf.all.secure_redirects = 0
+net.ipv4.conf.default.secure_redirects = 0
+net.ipv6.conf.all.accept_redirects = 0
+net.ipv6.conf.default.accept_redirects = 0
+# Do not send ICMP redirects
+net.ipv4.conf.all.send_redirects = 0
+net.ipv4.conf.default.send_redirects = 0
+
+fs.protected_fifos = 2
+fs.protected_regular = 2
+
+kernel.kptr_restrict = 2
+kernel.sysrq = 0
+
+net.ipv4.conf.all.rp_filter = 1
+
+net.ipv4.conf.all.log_martians = 1
+net.ipv4.conf.default.log_martians = 1
+
+net.ipv4.conf.default.accept_source_route = 0
+
+net.core.bpf_jit_harden = 2
+
+
+fs.suid_dumpable = 0
+EOF
+sysctl --system
 
 echo "Check /etc/default/grub and /etc/default/apparmor! Then 'update-grub'!"
 echo "#######  Continue Void documentation from 'Graphics Drivers' section #####"
