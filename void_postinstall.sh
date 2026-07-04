@@ -230,6 +230,12 @@ net.core.bpf_jit_harden = 2
 fs.suid_dumpable = 0
 EOF
 sysctl --system
+echo '
+***
+Done. 
+***'
+sleep 5
+clear
 
 echo "Check /etc/default/grub and /etc/default/apparmor! Then 'update-grub'!"
 echo "#######  Continue Void documentation from 'Graphics Drivers' section #####"
