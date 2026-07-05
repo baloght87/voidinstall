@@ -14,7 +14,7 @@ echo '
 ***
 Done. 
 ***'
-sleep 5
+sleep 8
 clear
 
 echo "Setting up a swap file..."
@@ -25,7 +25,7 @@ mkswap /swapfile
 swapon /swapfile
 echo "/swapfile none swap sw 0 0" >> /etc/fstab
 cat /etc/fstab
-ls -l
+swapon --show
 echo '
 ***
 Done. 
@@ -96,6 +96,7 @@ sleep 5
 clear
 
 echo "Setting up fstrim..."
+lsblk --discard
 sleep 5
 xbps-install -Sy cronie
 ln -s /etc/sv/cronie /var/service
@@ -237,5 +238,70 @@ Done.
 sleep 5
 clear
 
-echo "Check /etc/default/grub and /etc/default/apparmor! Then 'update-grub'!"
-echo "#######  Continue Void documentation from 'Graphics Drivers' section #####"
+echo "Installing clamav, rkhunter, btop, htop, bat..."
+sleep 5
+xbps-install -Sfy clamav rkhunter btop htop bat wget
+freshclam
+cat << EOF | sudo tee /etc/rkhunter.conf
+SCRIPTWHITELIST=/usr/bin/egrep
+SCRIPTWHITELIST=/usr/bin/fgrep
+SCRIPTWHITELIST=/usr/bin/ldd
+
+WEB_CMD=wget
+EOF
+rkhunter --config-check
+rkhunter --update
+echo '
+***
+Done. 
+***'
+sleep 5
+clear
+
+echo "Setting up graphical session (Intel)..."
+sleep 5
+xbps-install -Sfy mesa-dri xorg-minimal vulkan-loader mesa-vulkan-intel intel-video-accel
+echo '
+***
+Done. 
+***'
+sleep 5
+clear
+
+echo "Installing fonts and icon themes..."
+sleep 5
+xbps-install -Sfy dejavu-fonts-ttf noto-fonts-ttf nerd-fonts adwaita-icon-theme papirus-icon-theme
+echo '
+***
+Done. 
+***'
+sleep 5
+clear
+
+echo "Installing Desktop portals and KDE Plasma..."
+sleep 5
+xbps-install -Sfy xdg-desktop-portal xdg-desktop-portal-kde dbus kde-plasma sddm kate konsole dolphin firefox
+ln -s /etc/sv/sddm /var/service
+echo '
+***
+Done. 
+***'
+sleep 5
+clear
+
+echo "Installing Pipewire..."
+sleep 5
+xbps-install -Sfy alsa-utils pipewire wireplumber pavucontrol alsa-pipewire
+mkdir -p /etc/pipewire/pipewire.conf.d
+ln -s /usr/share/examples/wireplumber/10-wireplumber.conf /etc/pipewire/pipewire.conf.d/
+ln -s /usr/share/examples/pipewire/20-pipewire-pulse.conf /etc/pipewire/pipewire.conf.d/
+mkdir -p /etc/alsa/conf.d
+ln -s /usr/share/alsa/alsa.conf.d/50-pipewire.conf /etc/alsa/conf.d
+ln -s /usr/share/alsa/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d
+echo '
+***
+Done. 
+***'
+sleep 5
+clear
+echo "Check /etc/default/grub (apparmor=1 security=apparmor) and /etc/default/apparmor! Then 'update-grub'! Finally, enable dbus"
