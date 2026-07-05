@@ -131,7 +131,7 @@ echo '
 ***
 Done. 
 ***'
-sleep 5
+sleep 8
 clear
 
 echo "Chrooting into the system..."
@@ -187,4 +187,11 @@ clear
 
 END
 clear
-echo "Go back to chroot! Change root password! Edit /etc/default/grub! 'grub-install /dev/sda'! 'xbps-reconfigure -fa'"
+echo '
+
+
+
+
+
+'
+echo "Go back to chroot! Change root password! 'chown root:root /'! 'chmod 755 /'! Edit /etc/default/grub! 'grub-install /dev/sda'! 'xbps-reconfigure -fa'"
