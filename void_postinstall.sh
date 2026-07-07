@@ -242,7 +242,7 @@ echo "Installing clamav, rkhunter, btop, htop, bat..."
 sleep 5
 xbps-install -Sfy clamav rkhunter btop htop bat wget
 freshclam
-cat << EOF | sudo tee /etc/rkhunter.conf
+cat << EOF | sudo tee -a /etc/rkhunter.conf
 SCRIPTWHITELIST=/usr/bin/egrep
 SCRIPTWHITELIST=/usr/bin/fgrep
 SCRIPTWHITELIST=/usr/bin/ldd
