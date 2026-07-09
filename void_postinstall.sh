@@ -17,21 +17,27 @@ Done.
 sleep 8
 clear
 
-#echo "Setting up a swap file..."
-#sleep 5
-#dd if=/dev/zero of=/swapfile bs=1M count=8192
-#chmod 600 /swapfile
-#mkswap /swapfile
-#swapon /swapfile
-#echo "/swapfile none swap sw 0 0" >> /etc/fstab
-#cat /etc/fstab
-#swapon --show
-#echo '
-#***
-#Done. 
-#***'
-#sleep 5
-#clear
+echo "Setting up a swap file. and zram.."
+sleep 5
+dd if=/dev/zero of=/swapfile bs=1M count=2048	# If machine has 8GB RAM
+# dd if=/dev/zero of=/swapfile bs=1M count=4096	# If machine has 16GB RAM
+chmod 600 /swapfile
+mkswap /swapfile
+swapon /swapfile
+echo "/swapfile none swap sw,pri=10 0 0" >> /etc/fstab
+cat /etc/fstab
+xbps-install -Sy zramen
+ln -s /etc/sv/zramen /var/service
+echo "export ZRAM_COMP_ALGORITHM=lz4" > /etc/sv/zramen/conf
+echo "export ZRAM_PRIORITY=100" >> /etc/sv/zramen/conf
+echo "export ZRAM_SIZE=50" >> /etc/sv/zramen/conf
+swapon --show
+echo '
+***
+Done. 
+***'
+sleep 5
+clear
 
 echo "Installing man stuff..."
 sleep 5
