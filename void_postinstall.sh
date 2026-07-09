@@ -17,21 +17,21 @@ Done.
 sleep 8
 clear
 
-echo "Setting up a swap file..."
-sleep 5
-dd if=/dev/zero of=/swapfile bs=1M count=8192
-chmod 600 /swapfile
-mkswap /swapfile
-swapon /swapfile
-echo "/swapfile none swap sw 0 0" >> /etc/fstab
-cat /etc/fstab
-swapon --show
-echo '
-***
-Done. 
-***'
-sleep 5
-clear
+#echo "Setting up a swap file..."
+#sleep 5
+#dd if=/dev/zero of=/swapfile bs=1M count=8192
+#chmod 600 /swapfile
+#mkswap /swapfile
+#swapon /swapfile
+#echo "/swapfile none swap sw 0 0" >> /etc/fstab
+#cat /etc/fstab
+#swapon --show
+#echo '
+#***
+#Done. 
+#***'
+#sleep 5
+#clear
 
 echo "Installing man stuff..."
 sleep 5
@@ -48,7 +48,7 @@ echo "Installing microcode..."
 sleep 5
 xbps-install -Sy void-repo-nonfree
 xbps-install -Sy intel-ucode
-xbps-reconfigure -f intel-ucode
+xbps-reconfigure -fa
 echo '
 ***
 Done. 
@@ -105,6 +105,7 @@ cat << EOF | sudo tee /etc/cron.weekly/fstrim
 
 fstrim /
 EOF
+
 chmod u+x /etc/cron.weekly/fstrim
 echo '
 ***
@@ -303,5 +304,6 @@ echo '
 Done. 
 ***'
 sleep 5
+xbps-reconfigure -fa
 clear
 echo "Check /etc/default/grub (apparmor=1 security=apparmor) and /etc/default/apparmor! Then 'update-grub'! Finally, enable dbus"
