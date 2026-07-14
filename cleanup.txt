@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 sudo xbps-remove -O
 rm -rf ~/.cache/*
