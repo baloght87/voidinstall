@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 cp /home/balogh/Documents/kulon_orarend_lib.ods /mnt/usb/Utolso_modositas_wo_mentett/Home_dok/
 cp /home/balogh/Documents/Hataridok.txt /mnt/usb/Utolso_modositas_wo_mentett/Home_dok/
