@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 echo "LUKS key setup..."
 dd bs=1 count=64 if=/dev/urandom of=/boot/volume.key
@@ -165,7 +165,7 @@ flush ruleset
 
 table inet filter {
 	chain input {
-		type filter hook input priority 0;
+		type filter hook input priority filter;
 		policy drop;
 		iif lo accept
 		ct state established,related accept
@@ -173,11 +173,23 @@ table inet filter {
 		# Allow DHCP requests and responses
 		udp sport 67 udp dport 68 accept
 		udp sport 68 udp dport 67 accept
-		ip protocol icmp accept
-		ip6 nexthdr icmpv6 accept
+		ip protocol icmp icmp type {
+			destination-unreachable,
+			time-exceeded,
+			parameter-problem
+		} accept
+		icmpv6 type {
+			destination-unreachable,
+			packet-too-big,
+			time-exceeded,
+			parameter-problem,
+			nd-router-solicit,
+			nd-router-advert,
+			nd-neighbor-solicit,
+			nd-neighbor-advert
+		} accept
 		# Limit the rate of new connection attempts to any port
-		ct state new limit rate over 25/second burst 50 packets drop
-		udp dport { 3478, 3479, 19302-19309, 10000-20000 } accept
+		ct state new limit rate over 25/second burst 50 packets accept
 		log prefix "nftables-dropped: " level info limit rate 5/minute
 	}
 	chain forward {
@@ -223,14 +235,19 @@ fs.protected_fifos = 2
 fs.protected_regular = 2
 
 kernel.kptr_restrict = 2
+kernel.dmesg_restrict = 1
+kernel.yama.ptrace_scope = 1
+kernel.unprivileged_bpf_disabled = 1
 kernel.sysrq = 0
 
 net.ipv4.conf.all.rp_filter = 1
+net.ipv4.conf.default.rp_filter = 1
 
 net.ipv4.conf.all.log_martians = 1
 net.ipv4.conf.default.log_martians = 1
 
 net.ipv4.conf.default.accept_source_route = 0
+net.ipv4.conf.all.accept_source_route = 0
 
 net.core.bpf_jit_harden = 2
 
