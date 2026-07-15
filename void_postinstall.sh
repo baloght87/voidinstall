@@ -54,7 +54,7 @@ echo "Installing microcode..."
 sleep 5
 xbps-install -Sy void-repo-nonfree
 xbps-install -Sy intel-ucode
-xbps-reconfigure -fa
+xbps-reconfigure -f linux$(uname -r | sed 's/.\{5\}$//')
 echo '
 ***
 Done. 
@@ -164,43 +164,47 @@ cat << EOF | sudo tee /etc/nftables.conf
 flush ruleset
 
 table inet filter {
-	chain input {
-		type filter hook input priority filter;
-		policy drop;
-		iif lo accept
-		ct state established,related accept
-		ct state invalid drop
-		# Allow DHCP requests and responses
-		udp sport 67 udp dport 68 accept
-		udp sport 68 udp dport 67 accept
-		ip protocol icmp icmp type {
-			destination-unreachable,
-			time-exceeded,
-			parameter-problem
-		} accept
-		icmpv6 type {
-			destination-unreachable,
-			packet-too-big,
-			time-exceeded,
-			parameter-problem,
-			nd-router-solicit,
-			nd-router-advert,
-			nd-neighbor-solicit,
-			nd-neighbor-advert
-		} accept
-		# Limit the rate of new connection attempts to any port
-		ct state new limit rate over 25/second burst 50 packets accept
-		log prefix "nftables-dropped: " level info limit rate 5/minute
-	}
-	chain forward {
-		type filter hook forward priority 0;
-		policy drop;
-	}
-	chain output {
-		type filter hook output priority 0;
-		policy accept;
-	}
+
+    chain input {
+        type filter hook input priority filter;
+        policy drop;
+        iif lo accept
+        ct state established,related accept
+        ct state invalid drop
+        udp sport 67 udp dport 68 accept
+        udp sport 68 udp dport 67 accept
+        ip protocol icmp icmp type {
+            destination-unreachable,
+            time-exceeded,
+            parameter-problem
+        } accept
+        icmpv6 type {
+            destination-unreachable,
+            packet-too-big,
+            time-exceeded,
+            parameter-problem,
+            nd-router-solicit,
+            nd-router-advert,
+            nd-neighbor-solicit,
+            nd-neighbor-advert
+        } accept
+        ct state new limit rate over 25/second burst 50 packets drop
+        ct state new accept
+        log prefix "nft-drop: " flags all level info limit rate 5/minute
+    }
+
+    chain forward {
+        type filter hook forward priority filter;
+        policy drop;
+    }
+
+    chain output {
+		type filter hook output priority filter;
+    	policy accept;
+    }
 }
+ 
+
 EOF
 nft -f /etc/nftables.conf
 nft list ruleset
@@ -235,9 +239,6 @@ fs.protected_fifos = 2
 fs.protected_regular = 2
 
 kernel.kptr_restrict = 2
-kernel.dmesg_restrict = 1
-kernel.yama.ptrace_scope = 1
-kernel.unprivileged_bpf_disabled = 1
 kernel.sysrq = 0
 
 net.ipv4.conf.all.rp_filter = 1
@@ -250,9 +251,10 @@ net.ipv4.conf.default.accept_source_route = 0
 net.ipv4.conf.all.accept_source_route = 0
 
 net.core.bpf_jit_harden = 2
-
+kernel.randomize_va_space = 2
 
 fs.suid_dumpable = 0
+
 EOF
 sysctl --system
 echo '
