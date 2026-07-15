@@ -140,8 +140,12 @@ xchroot /mnt <<END
 
 echo "Setting up root permissions..."
 sleep 5
+echo "command: chown root:root /"
 chown root:root /
+echo "command done"
+echo "command chmod 755 /"
 chmod 755 /
+echo "command done"
 echo '
 ***
 Done. 
