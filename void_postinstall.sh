@@ -107,8 +107,8 @@ sleep 5
 xbps-install -Sy cronie
 ln -s /etc/sv/cronie /var/service
 cat << EOF | sudo tee /etc/cron.weekly/fstrim
-#!/bin/bash
-
+#!/usr/bin/env bash
+echo "$(date) fstrim done." >> /var/log/fstrim-test.log
 fstrim /
 EOF
 
@@ -306,8 +306,8 @@ clear
 
 echo "Installing Desktop portals and KDE Plasma..."
 sleep 5
-xbps-install -Sfy xdg-desktop-portal xdg-desktop-portal-kde dbus kde-plasma sddm kate konsole dolphin firefox
-ln -s /etc/sv/sddm /var/service
+xbps-install -Sfy xdg-desktop-portal xdg-desktop-portal-kde dbus kde-plasma lightdm lightdm-gtk-greeter kate konsole dolphin firefox
+ln -s /etc/sv/lightdm /var/service
 echo '
 ***
 Done. 
