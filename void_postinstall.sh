@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+clear
 echo "LUKS key setup..."
 dd bs=1 count=64 if=/dev/urandom of=/boot/volume.key
 cryptsetup luksAddKey /dev/sda2 /boot/volume.key
@@ -331,4 +332,4 @@ Done.
 sleep 5
 xbps-reconfigure -fa
 clear
-echo "Check /etc/default/grub (apparmor=1 security=apparmor) and /etc/default/apparmor! Then 'update-grub'! Finally, enable dbus"
+echo "Check /etc/default/grub (apparmor=1 security=apparmor) and /etc/default/apparmor! Then 'update-grub'! "rkhunter --propupd"! Finally, enable dbus"
