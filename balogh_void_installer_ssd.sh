@@ -61,7 +61,7 @@ clear
 
 echo "Setting up encryption..."
 sleep 5
-cryptsetup luksFormat --type luks2 /dev/sda2
+cryptsetup luksFormat --type luks1 /dev/sda2
 cryptsetup luksOpen --persistent --allow-discards /dev/sda2 voidvm
 vgcreate voidvm /dev/mapper/voidvm
 lvcreate -L 100G voidvm -n root
