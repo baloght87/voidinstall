@@ -180,7 +180,7 @@ cd /boot
 mkdir -p EFI/BOOT
 cp /usr/share/limine/BOOTX64.EFI EFI/BOOT/
 echo "timeout: 3" > EFI/BOOT/limine.conf
-echo "/VOID ()" >> EFI/BOOT/limine.conf
+echo "/VOID ($(uname -r | sed 's/.\{5\}$//'))" >> EFI/BOOT/limine.conf
 echo "   protocol: linux" >> EFI/BOOT/limine.conf
 echo "   kernel_path: boot():/vmlinuz" >> EFI/BOOT/limine.conf
 echo "   module_path: boot():/initramfs" >> EFI/BOOT/limine.conf
