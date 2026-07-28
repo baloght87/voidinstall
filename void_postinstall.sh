@@ -179,6 +179,7 @@ table inet filter {
             time-exceeded,
             parameter-problem
         } accept
+		icmp type echo-request drop
         icmpv6 type {
             destination-unreachable,
             packet-too-big,
@@ -332,4 +333,4 @@ Done.
 sleep 5
 xbps-reconfigure -fa
 clear
-echo "Check /etc/default/grub (apparmor=1 security=apparmor) and /etc/default/apparmor! Then 'update-grub'! "rkhunter --propupd"! Finally, enable dbus"
+echo "Check /boot/EFI/BOOT/limine.conf (apparmor=1 security=apparmor) and /etc/default/apparmor! "rkhunter --propupd"! Finally, enable dbus"
