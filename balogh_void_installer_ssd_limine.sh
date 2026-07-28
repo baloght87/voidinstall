@@ -61,10 +61,10 @@ clear
 
 echo "Setting up encryption..."
 sleep 5
-cryptsetup luksFormat --type luks1 /dev/sda2
+cryptsetup luksFormat --type luks2 /dev/sda2
 cryptsetup luksOpen --persistent --allow-discards /dev/sda2 voidvm
 vgcreate voidvm /dev/mapper/voidvm
-lvcreate -L 100G voidvm -n root
+lvcreate -L 150G voidvm -n root
 lvcreate -l 100%FREE voidvm -n home
 lsblk
 echo '
@@ -91,8 +91,8 @@ sleep 5
 mount /dev/voidvm/root /mnt
 mkdir -p /mnt/home
 mount /dev/voidvm/home /mnt/home
-mkdir -p /mnt/boot/efi
-mount /dev/sda1 /mnt/boot/efi
+mkdir -p /mnt/boot
+mount /dev/sda1 /mnt/boot
 clear
 lsblk
 echo '
@@ -115,7 +115,7 @@ clear
 
 echo "Installing the base system..."
 sleep 5
-xbps-install -Sfy -R https://repo-default.voidlinux.org/current -r /mnt base-system cryptsetup grub-x86_64-efi lvm2 nano git
+x86_64 xbps-install -Sfy -R https://repo-default.voidlinux.org/current -r /mnt base-system cryptsetup limine lvm2 nano git
 echo '
 ***
 Done. 
@@ -125,7 +125,7 @@ clear
 
 echo "Generating fstab..."
 sleep 5
-xgenfstab /mnt > /mnt/etc/fstab
+xgenfstab -U /mnt > /mnt/etc/fstab
 cat /mnt/etc/fstab
 echo '
 ***
@@ -140,12 +140,8 @@ xchroot /mnt <<END
 
 echo "Setting up root permissions..."
 sleep 5
-echo "command: chown root:root /"
 chown root:root /
-echo "command done"
-echo "command chmod 755 /"
 chmod 755 /
-echo "command done"
 echo '
 ***
 Done. 
@@ -178,10 +174,18 @@ Done.
 sleep 5
 clear
 
-echo "Grub configuration..."
+echo "Limine configuration..."
 sleep 5
-echo "GRUB_ENABLE_CRYPTODISK=y" >> /etc/default/grub
-echo "rd.lvm.vg=voidvm rd.luks.allow-discards rd.luks.uuid=$(blkid -o value -s UUID /dev/sda2)" >> /etc/default/grub
+cd /boot
+mkdir -p EFI/BOOT
+cp /usr/share/limine/BOOTX64.EFI EFI/BOOT/
+echo "timeout: 3" > EFI/BOOT/limine.conf
+echo "/VOID ()" >> EFI/BOOT/limine.conf
+echo "   protocol: linux" >> EFI/BOOT/limine.conf
+echo "   kernel_path: boot():/vmlinuz" >> EFI/BOOT/limine.conf
+echo "   module_path: boot():/initramfs" >> EFI/BOOT/limine.conf
+echo "   cmdline: rd.lvm.vg=voidvm rd.luks.allow-discards root=/dev/mapper/luks-$(blkid -o value -s UUID /dev/sda2) rd.luks.uuid=$(blkid -o value -s UUID /dev/sda2) rw loglevel=3" >> EFI/BOOT/limine.conf
+cd ~
 echo '
 ***
 Done. 
@@ -198,4 +202,4 @@ echo '
 
 
 '
-echo "Go back to chroot! Change root password! 'chown root:root /'! 'chmod 755 /'! Edit /etc/default/grub! 'grub-install /dev/sda'! 'xbps-reconfigure -fa'"
+echo "Go back to chroot! Change root password! 'chown root:root /'! 'chmod 755 /'! Edit /boot/EFI/BOOT/limine.conf'! /etc/fstab! 'xbps-reconfigure -fa'"
