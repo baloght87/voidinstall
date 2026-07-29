@@ -185,7 +185,7 @@ echo "/VOID ($(uname -r | sed 's/.\{5\}$//'))" >> EFI/BOOT/limine.conf
 echo "   protocol: linux" >> EFI/BOOT/limine.conf
 echo "   kernel_path: boot():/vmlinuz" >> EFI/BOOT/limine.conf
 echo "   module_path: boot():/initramfs" >> EFI/BOOT/limine.conf
-echo "   cmdline: rd.lvm.vg=voidvm rd.luks.allow-discards root=/dev/mapper/luks-$(blkid -o value -s UUID /dev/sda2) rd.luks.uuid=$(blkid -o value -s UUID /dev/sda2) rw loglevel=3" >> EFI/BOOT/limine.conf
+echo "   cmdline: rd.lvm.vg=voidvm root=/dev/voidvm/root rd.luks.uuid=$(blkid -o value -s UUID /dev/sda2) rw loglevel=4" >> EFI/BOOT/limine.conf
 ls >> EFI/BOOT/limine.conf
 cd ~
 echo '
