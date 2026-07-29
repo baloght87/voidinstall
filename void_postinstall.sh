@@ -169,30 +169,24 @@ table inet filter {
     chain input {
         type filter hook input priority filter;
         policy drop;
+
         iif lo accept
-        ct state established,related accept
+
+        iif != lo ip saddr 127.0.0.0/8 drop
+        iif != lo ip6 saddr ::1 drop
+
         ct state invalid drop
+        ct state established,related accept
+
+        # DHCPv4 client
         udp sport 67 udp dport 68 accept
-        udp sport 68 udp dport 67 accept
-        ip protocol icmp icmp type {
-            destination-unreachable,
-            time-exceeded,
-            parameter-problem
-        } accept
-		icmp type echo-request drop
-        icmpv6 type {
-            destination-unreachable,
-            packet-too-big,
-            time-exceeded,
-            parameter-problem,
-            nd-router-solicit,
-            nd-router-advert,
-            nd-neighbor-solicit,
-            nd-neighbor-advert
-        } accept
-        ct state new limit rate over 25/second burst 50 packets drop
-        ct state new accept
-        log prefix "nft-drop: " flags all level info limit rate 5/minute
+
+        # ICMP
+        ip protocol icmp accept
+        ip6 nexthdr ipv6-icmp accept
+
+        log prefix "nft-drop: " level warning limit rate 5/minute
+        drop
     }
 
     chain forward {
@@ -201,11 +195,10 @@ table inet filter {
     }
 
     chain output {
-		type filter hook output priority filter;
-    	policy accept;
+        type filter hook output priority filter;
+        policy accept;
     }
 }
- 
 
 EOF
 nft -f /etc/nftables.conf
