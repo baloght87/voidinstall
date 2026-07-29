@@ -32,14 +32,14 @@ Done.
 sleep 5
 clear
 
-echo "Fdisk partitioning: creates an 800M EFI partition and the rest is for the LUKS partition..."
+echo "Fdisk partitioning: creates a 1G EFI partition and the rest is for the LUKS partition..."
 sleep 5
 (
   echo g;
   echo n;
   echo ;
   echo ;
-  echo +800M;
+  echo +1G;
   echo n;
   echo ;
   echo ;
