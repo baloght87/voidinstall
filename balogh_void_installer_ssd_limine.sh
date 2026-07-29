@@ -115,7 +115,7 @@ clear
 
 echo "Installing the base system..."
 sleep 5
-x86_64 xbps-install -Sfy -R https://repo-default.voidlinux.org/current -r /mnt base-system cryptsetup limine lvm2 nano git
+xbps-install -Sfy -R https://repo-default.voidlinux.org/current -r /mnt base-system cryptsetup limine lvm2 nano git
 echo '
 ***
 Done. 
