@@ -185,7 +185,7 @@ table inet filter {
         ip protocol icmp accept
         ip6 nexthdr ipv6-icmp accept
 
-        log prefix "nft-drop: " level warning limit rate 5/minute
+        log prefix "nft-drop: " level warn limit rate 5/minute
         drop
     }
 
