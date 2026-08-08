@@ -203,5 +203,6 @@ echo '
 
 
 
+
+Change root password! chown root:root /! chmod 755 /! Edit /boot/EFI/BOOT/limine.conf! /etc/fstab! xbps-reconfigure -fa!
 '
-echo "Go back to chroot! Change root password! 'chown root:root /'! 'chmod 755 /'! Edit /boot/EFI/BOOT/limine.conf'! /etc/fstab! 'xbps-reconfigure -fa'"
