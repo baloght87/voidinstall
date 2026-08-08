@@ -301,7 +301,7 @@ clear
 
 echo "Installing Desktop portals and KDE Plasma..."
 sleep 5
-xbps-install -Sfy xdg-desktop-portal xdg-desktop-portal-kde dbus kde-plasma lightdm lightdm-gtk3-greeter kate konsole dolphin firefox
+xbps-install -Sfy xdg-desktop-portal xdg-desktop-portal-kde dbus kde-plasma-base lightdm lightdm-gtk3-greeter kate konsole dolphin firefox
 ln -s /etc/sv/lightdm /var/service
 echo '
 ***
