@@ -326,4 +326,13 @@ Done.
 sleep 5
 xbps-reconfigure -fa
 clear
-echo "Check /boot/EFI/BOOT/limine.conf (apparmor=1 security=apparmor) and /etc/default/apparmor! "rkhunter --propupd"! Finally, enable dbus"
+echo '
+
+
+
+
+
+
+
+Check /boot/EFI/BOOT/limine.conf (apparmor=1 security=apparmor) and /etc/default/apparmor! rkhunter --propupd! Finally, enable dbus!
+'
