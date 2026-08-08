@@ -1,22 +1,22 @@
 #!/usr/bin/env bash
 
 clear
-echo "LUKS key setup..."
-dd bs=1 count=64 if=/dev/urandom of=/boot/volume.key
-cryptsetup luksAddKey /dev/sda2 /boot/volume.key
-chmod 000 /boot/volume.key
+#echo "LUKS key setup..."
+#dd bs=1 count=64 if=/dev/urandom of=/boot/volume.key
+#cryptsetup luksAddKey /dev/sda2 /boot/volume.key
+#chmod 000 /boot/volume.key
 chmod -R g-rwx,o-rwx /boot
-echo "voidvm  /dev/sda2  /boot/volume.key  luks" >> /etc/crypttab
-echo 'install_items+=" /boot/volume.key /etc/crypttab "' > /etc/dracut.conf.d/10-crypt.conf
-cat /etc/crypttab
-sleep 3
-cat /etc/dracut.conf.d/10-crypt.conf
-echo '
-***
-Done. 
-***'
-sleep 8
-clear
+#echo "voidvm  /dev/sda2  /boot/volume.key  luks" >> /etc/crypttab
+#echo 'install_items+=" /boot/volume.key /etc/crypttab "' > /etc/dracut.conf.d/10-crypt.conf
+#cat /etc/crypttab
+#sleep 3
+#cat /etc/dracut.conf.d/10-crypt.conf
+#echo '
+#***
+#Done. 
+#***'
+#sleep 8
+#clear
 
 echo "Setting up a swap file. and zram.."
 sleep 5
