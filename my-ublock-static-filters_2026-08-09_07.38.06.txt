@@ -1,0 +1,105 @@
+! Jul 30, 2026 https://www.google.com
+www.google.com##.qarstb.o3j99
+www.google.com##.c93Gbe
+www.google.com##.CoM3Df.n1xJcf.o3j99
+www.google.com##.lnXdpd
+www.google.com##.SDkEP > .dRYYxd.fM33ce
+www.google.com##.wPSZBe > svg > path
+www.google.com##.iThwld.T14B5e.FPdoLc > center
+www.google.com##.EyBRub.UUbT9
+www.google.com###slim_appbar > div
+www.google.com##.iFBYke.YNk70c
+www.google.com##.Efnghe.Q3DXx
+www.google.com##.Pqkn2e.t6fMQb
+www.google.com##.Tg7LZd.HZVG1b
+
+! Jul 30, 2026 https://duckduckgo.com
+duckduckgo.com##.pull-tab-scroll-button_peekButton__xReTe
+duckduckgo.com##.pull-tab-scroll-button_bottomRow__ohh0h
+duckduckgo.com##.pull-tab-scroll-button_peekButtonKey__L0mUy > path
+duckduckgo.com##.center_intrinsic__Gt_PZ.center_root___q8wn.minimal-homepage_taglineWrap__XIE7C
+duckduckgo.com##.ai-settings-button_customizeButton__NK9sc.motif-default.button_iconOnlyBreakpoint-md__B1fK8.button_secondary-solid__R99ko.button_size-sm__UDM27.button_button__IWBae
+duckduckgo.com##.ai-searchbox_modeSelectorWrapper__GA6Ii
+duckduckgo.com##.minimal-homepage_minimalHeroLogo__qJs9x
+duckduckgo.com##.container_fullWidth__1H_L8.container_responsive__hpeZ9.container_root__Ycg94.header_container__Pq_qE
+
+! Jul 30, 2026 https://www.youtube.com
+www.youtube.com###guide-inner-content
+www.youtube.com###guide-button
+www.youtube.com##.style-default.ytd-topbar-menu-button-renderer.style-scope
+www.youtube.com##.ytSearchboxComponentSearchButtonDark.ytSearchboxComponentSearchButton
+www.youtube.com##.ytSearchboxComponentClearButton > .ytSpecTouchFeedbackShapeTouchResponse.ytSpecTouchFeedbackShapeHost > .ytSpecTouchFeedbackShapeFill
+www.youtube.com###content-wrapper
+www.youtube.com##.ytd-two-column-browse-results-renderer.style-scope > .ytd-rich-grid-renderer.style-scope
+www.youtube.com##.ytd-search-header-renderer.style-scope > .yt-chip-cloud-renderer.style-scope
+www.youtube.com###header > .ytd-search.style-scope
+
+! Jul 30, 2026 https://topszotar.hu
+topszotar.hu##.box.maintext
+topszotar.hu##.right
+topszotar.hu##.mainmenu
+topszotar.hu##.entrystructure.descr > h2
+topszotar.hu##.entrystructure.descr > .box
+topszotar.hu##footer
+
+! Jul 30, 2026 https://duckduckgo.com
+duckduckgo.com##.js-header-aside.header--aside
+
+! Jul 30, 2026 https://distrowatch.com
+distrowatch.com##.cc_container--open.cc_container.cc_banner
+distrowatch.com##table:nth-of-type(1) > tbody > tr > td:nth-of-type(1) > table:nth-of-type(2)
+distrowatch.com##th.NavMenu:nth-of-type(1)
+distrowatch.com##th.NavMenu:nth-of-type(2)
+distrowatch.com##th.NavMenu:nth-of-type(3)
+distrowatch.com##body > table > tbody > tr > td > table > tbody > tr > .NewsLogo
+distrowatch.com##table:nth-of-type(1) > tbody > tr > td:nth-of-type(2) > table:nth-of-type(1) > tbody > tr > td
+distrowatch.com##body > table:nth-of-type(2) > tbody > tr > td
+distrowatch.com##.Logo > tbody > tr > td:nth-of-type(1) > table:nth-of-type(1)
+distrowatch.com##tr:nth-of-type(2) > .News1 > table
+distrowatch.com##table.News:nth-of-type(1) > tbody > tr:nth-of-type(2) > .News
+distrowatch.com##table.News:nth-of-type(1) > tbody > tr:nth-of-type(1) > .Invert
+
+! Jul 30, 2026 https://duckduckgo.com
+duckduckgo.com##.Yy4FVTLlXDKk7XaBX_nT._I0sotAoeGtAJzkzyutg.fIgpqHfKgUmmk5lqmvL5
+
+! Jul 30, 2026 https://chatgpt.com
+||accounts.google.com/gsi/iframe/select?client_id=799222349882-ne3i0s9jdm5s0p7ll2d7tlsi1vc1halt.apps.googleusercontent.com&auto_select=false&ux_mode=popup&ui_mode=card&as=EgnmVK5tqgI5QKbzRVaQWeKtvQPig_lVDAjjj7SAve0&bs=c1NsJwu0yS7xzA6dEUdhcPHhwh76Hfb5F4oG00lzRr0&is_itp=true&channel_id=6dcc62e273167ea7fe72c61ee04e8215e84b525d90a297d383d0c3df3bc7b0ff&origin=https%3A%2F%2Fchatgpt.com&oauth2_auth_url=https%3A%2F%2Faccounts.google.com%2Fo%2Foauth2%2Fv2%2Fauth$subdocument
+chatgpt.com##.\@w-sm\/main\:px-\[60px\].overflow-hidden.relative.pb-4.\[view-transition-name\:var\(--vt-disclaimer\)\].text-token-text-tertiary.text-xs.text-center.pt-2.min-h-9
+
+! Jul 30, 2026 https://workspace.google.com
+workspace.google.com###glue-cookie-notification-bar-1
+workspace.google.com##.JoinMeeting_container
+workspace.google.com##gws-jump-action-button
+workspace.google.com##.sticky\:before.jumplinks__static.TemplateJumplinks_jumplinks
+workspace.google.com###gemini-in-meet > .Template6040_wrapper.Grid_grid > .Template6040_content.Grid_column
+workspace.google.com##.jumplinks__static.TemplateJumplinks_jumplinks
+workspace.google.com##.Template5050Hero_fixedRightPadding.Template5050Hero_content.Grid_column
+||lh3.googleusercontent.com/*=e365-pa-nu-rw-w*$image
+workspace.google.com##.Template5050Hero_wrapper.Grid_grid
+workspace.google.com###gemini-in-meet > .Template6040_wrapper.Grid_grid
+workspace.google.com###flexible > .Template6040_wrapper.Grid_grid
+workspace.google.com###enhance > .TemplateSectionBreak_grid.Grid_grid
+workspace.google.com###m11 > gws-accordion-5050-container > .Template5050Accordion_container.Grid_grid
+workspace.google.com###collaborate > .TemplateSectionBreak_grid.Grid_grid
+workspace.google.com###m15 > gws-accordion-5050-container > .Template5050Accordion_container.Grid_grid
+workspace.google.com###m17 > .Template6040_wrapper.Grid_grid
+workspace.google.com###secure > .Template6040_wrapper.Grid_grid
+workspace.google.com###hardware > .Template6040_wrapper.Grid_grid
+workspace.google.com###premium > .TemplateSectionBreak_grid.Grid_grid
+workspace.google.com##.TemplateMulticolumnCarousel_wrap
+workspace.google.com###m27-2 > .TemplateSectionBreak_grid.Grid_grid
+workspace.google.com##.QuoteSlide_gridCol.Grid_column
+workspace.google.com##.Container_flush.TemplateQuoteCarousel_container.Container_maxWidth.Container_layout > gws-carousel
+workspace.google.com###faqs > .TemplateSectionBreak_grid.Grid_grid
+workspace.google.com##.TemplateFaq_faq__content
+workspace.google.com##.TemplateTileSimple_wrapper
+workspace.google.com##.TemplateFootnotes_container
+workspace.google.com##.TemplateFooter_footer__content
+workspace.google.com##gws-footer-nav-bar
+workspace.google.com###m28 > .Spacer_all.Spacer_mobile.Spacer_tablet.Spacer_desktop.Spacer_filled.Spacer_spacer
+workspace.google.com##.TemplateBackgroundContainer_container
+workspace.google.com##.TemplateHeader_dynamicFallbackModule > gws-header > .TemplateHeader_header > .TemplateHeader_headerDesktopNav.TemplateHeader_headerContent > .TemplateHeader_headerNav
+
+! Jul 30, 2026 https://accounts.google.com
+accounts.google.com##.FZfKCe
+accounts.google.com##.RDsYTb > .dMNVAe
