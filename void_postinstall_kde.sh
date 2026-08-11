@@ -18,7 +18,7 @@ chmod -R g-rwx,o-rwx /boot
 #sleep 8
 #clear
 
-echo "Setting up a swap file. and zram.."
+echo "Setting up a swap file. and zram..."
 sleep 5
 dd if=/dev/zero of=/swapfile bs=1M count=2048	# If machine has 8GB RAM
 # dd if=/dev/zero of=/swapfile bs=1M count=4096	# If machine has 16GB RAM
@@ -67,7 +67,7 @@ echo "Adding a user..."
 sleep 5
 useradd -m balogh
 passwd balogh
-usermod -aG wheel,audio,video,network,storage balogh
+usermod -aG wheel,audio,video,network,storage,plugdev balogh
 id balogh
 echo '
 ***
@@ -291,7 +291,7 @@ clear
 
 echo "Installing fonts and icon themes..."
 sleep 5
-xbps-install -Sfy dejavu-fonts-ttf noto-fonts-ttf nerd-fonts adwaita-icon-theme papirus-icon-theme
+xbps-install -Sfy dejavu-fonts-ttf noto-fonts-ttf nerd-fonts adwaita-icon-theme papirus-icon-theme font-awesome
 echo '
 ***
 Done. 
