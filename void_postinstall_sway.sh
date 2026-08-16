@@ -18,7 +18,7 @@ chmod -R g-rwx,o-rwx /boot
 #sleep 8
 #clear
 
-echo "Setting up a swap file. and zram.."
+echo "Setting up a swap file. and zram..."
 sleep 5
 dd if=/dev/zero of=/swapfile bs=1M count=8192	# If machine has 8GB RAM
 # dd if=/dev/zero of=/swapfile bs=1M count=4096	# If machine has 16GB RAM
@@ -299,9 +299,9 @@ Done.
 sleep 5
 clear
 
-echo "Installing Desktop portals and KDE Plasma..."
+echo "Installing Desktop portals and Sway WM..."
 sleep 5
-xbps-install -Sf xdg-desktop-portal xdg-desktop-portal-wlr firefox feh gvfs brightnessctl Thunar thunar-volman foot mousepad SwayNotificationCenter grimshot sway swaybg swayidle swayimg swaykbdd swaylock grim slurp wmenu nwg-look elogind i3staus Waybar
+xbps-install -Sf xdg-desktop-portal xdg-desktop-portal-wlr firefox feh gvfs brightnessctl Thunar thunar-volman foot mousepad SwayNotificationCenter grimshot sway swaybg swayidle swayimg swaykbdd swaylock grim slurp wmenu nwg-look elogind i3status Waybar
 echo '
 ***
 Done. 
