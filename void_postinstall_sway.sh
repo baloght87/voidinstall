@@ -301,7 +301,7 @@ clear
 
 echo "Installing Desktop portals and Sway WM..."
 sleep 5
-xbps-install -Sf xdg-desktop-portal xdg-desktop-portal-wlr firefox feh gvfs brightnessctl Thunar thunar-volman foot mousepad SwayNotificationCenter grimshot sway swaybg swayidle swayimg swaykbdd swaylock grim slurp wmenu nwg-look elogind i3status Waybar
+xbps-install -Sf xdg-desktop-portal xdg-desktop-portal-wlr firefox feh gvfs brightnessctl Thunar thunar-volman foot mousepad SwayNotificationCenter grimshot sway swaybg swayidle swayimg swaykbdd swaylock grim slurp swappy wmenu nwg-look elogind i3status Waybar
 echo '
 ***
 Done. 
