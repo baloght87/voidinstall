@@ -170,23 +170,23 @@ table inet filter {
         type filter hook input priority filter;
         policy drop;
 
+        # Loopback
         iif lo accept
 
+        # Anti-spoofing
         iif != lo ip saddr 127.0.0.0/8 drop
         iif != lo ip6 saddr ::1 drop
 
+        # Conntrack
         ct state invalid drop
         ct state established,related accept
 
         # DHCPv4 client
         udp sport 67 udp dport 68 accept
 
-        # ICMP
-        ip protocol icmp accept
-        ip6 nexthdr ipv6-icmp accept
-
-        log prefix "nft-drop: " level warn limit rate 5/minute
-        drop
+        # ICMP / ICMPv6
+        meta l4proto icmp accept
+        meta l4proto icmpv6 accept
     }
 
     chain forward {
@@ -301,7 +301,7 @@ clear
 
 echo "Installing Desktop portals and KDE Plasma..."
 sleep 5
-xbps-install -Sfy xdg-desktop-portal xdg-desktop-portal-kde dbus kde-plasma-base lightdm lightdm-gtk3-greeter kate konsole dolphin firefox
+xbps-install -Sfy xdg-desktop-portal xdg-desktop-portal-kde dbus kde-plasma-base lightdm lightdm-gtk3-greeter kate konsole firefox
 ln -s /etc/sv/lightdm /var/service
 echo '
 ***
