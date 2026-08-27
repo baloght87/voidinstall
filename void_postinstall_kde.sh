@@ -18,7 +18,7 @@ chmod -R g-rwx,o-rwx /boot
 #sleep 8
 #clear
 
-echo "Setting up a swap file. and zram..."
+echo "Setting up a swap file and zram..."
 sleep 5
 dd if=/dev/zero of=/swapfile bs=1M count=2048	# If machine has 8GB RAM
 # dd if=/dev/zero of=/swapfile bs=1M count=4096	# If machine has 16GB RAM
@@ -67,7 +67,7 @@ echo "Adding a user..."
 sleep 5
 useradd -m balogh
 passwd balogh
-usermod -aG wheel,audio,video,network,storage,plugdev balogh
+usermod -aG wheel,audio,video,network balogh
 id balogh
 echo '
 ***
@@ -109,8 +109,9 @@ xbps-install -Sy cronie
 ln -s /etc/sv/cronie /var/service
 cat << EOF | sudo tee /etc/cron.weekly/fstrim
 #!/usr/bin/env bash
-echo "$(date) fstrim done." >> /var/log/fstrim-test.log
+echo "$(date)" >> /var/log/fstrim-test.log
 fstrim -a -v
+echo "fstrim done." >> /var/log/fstrim-test.log
 EOF
 
 chmod u+x /etc/cron.weekly/fstrim
@@ -301,7 +302,7 @@ clear
 
 echo "Installing Desktop portals and KDE Plasma..."
 sleep 5
-xbps-install -Sfy xdg-desktop-portal xdg-desktop-portal-kde dbus kde-plasma-base lightdm lightdm-gtk3-greeter kate konsole firefox
+xbps-install -Sfy xdg-desktop-portal xdg-desktop-portal-kde dbus kde-plasma lightdm lightdm-gtk3-greeter kate konsole firefox
 ln -s /etc/sv/lightdm /var/service
 echo '
 ***
